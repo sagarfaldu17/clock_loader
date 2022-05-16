@@ -1,20 +1,31 @@
-name: clock_loader
-description: A clock loader which you can use to display a smooth and great loading effect.
-version: 0.0.3
-homepage: https://github.com/mi-ghanshyam/clock_loader
+name: sf_biomatric_auth
+description: A new Flutter application.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.16.1 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  collection: ^1.15.0
+
+
+  cupertino_icons: ^1.0.2
+#  audioplayer: ^0.8.1
+  local_auth: ^2.0.1
+#  biometricx: ^0.0.2 (only for anrdoid also having issue for android in repository)
+#  biometric_auth: ^0.1.2 (with out null safty and not working)
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^1.0.0
 
+# The following section is specific to Flutter.
 flutter:
+
+  uses-material-design: true

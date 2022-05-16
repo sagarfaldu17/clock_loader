@@ -1,33 +1,16 @@
-# Clock Loader
-Highly versatile Widget display the smooth and creative loader named as clock loader.
+# sf_biomatric_auth
 
-# Platforms
-This package has been successfully tested on iOS, Android & web.
+A new Flutter application.
 
-# Examples
-The following examples are extracted from the example project available in the repository. More examples are available in this project.
+## Getting Started
 
-# Samples of Clockloader with choices
+This project is a starting point for a Flutter application.
 
-## Clock loader with circle particles 
-![clock-loader](https://user-images.githubusercontent.com/85343307/150532317-0f4d4042-0854-4648-b3a2-a1012948e4f2.gif)
+A few resources to get you started if this is your first Flutter project:
 
-# How to Use
-```
-ClockLoader(
-          clockLoaderModel: ClockLoaderModel(
-            shapeOfParticles: ShapeOfParticlesEnum.circle,
-            mainHandleColor: Colors.white,
-            particlesColor: Colors.white,
-          ),
-        );
-```
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-
-# LICENSE!
-
-Clockloader is [MIT-licensed](https://github.com/mi-ghanshyam/clock_loader/blob/master/LICENSE).
-
-# Let us know!
-
-We’d be really happy if you send us links to your projects where you use our component. Just send an email to sales@mindinventory.com and do let us know if you have any questions or suggestion regarding our work.
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
