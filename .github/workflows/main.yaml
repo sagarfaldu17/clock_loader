@@ -22,22 +22,6 @@ jobs:
         with:
           flutter-version: '2.10.2'
       - run: flutter pub get
-#      - run: flutter test
-#      - run: flutter build apk --debug --split-per-abi
-#      - run: |
-#          flutter build ios --no-codesign
-#          cd build/ios/iphoneos
-#          mkdir Payload
-#          cd Payload
-#          ln -s ../Runner.app
-#          cd ..
-#          zip -r app.ipa Payload
-#      - name: Push to Releases
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "build/app/outputs/apk/debug/*,build/ios/iphoneos/app.ipa"
-#          tag: v1.0.${{ github.run_number }}
-#          token: ${{ secrets.TOKEN }}
       - uses: maxim-lobanov/setup-xcode@v1
           with:
             xcode-version: "13.3"
