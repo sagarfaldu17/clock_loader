@@ -21,6 +21,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.10.2'
+      - run: flutter clean
       - run: flutter pub get
       - uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -71,10 +72,13 @@ jobs:
         run: cd build-output && ls
 
       - name: check folder structure2 | ios
-        run: cd ios && ls
+        run: cd app.xcarchive && ls
 
-      - name: check folder structure3 | build-output
-        run: cd .. && cd build-output && ls
+#      - name: check folder structure2 | ios
+#        run: cd ios && ls
+
+#      - name: check folder structure3 | build-output
+#        run: cd .. && cd build-output && ls
 
 #      - name: Export ipa
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
