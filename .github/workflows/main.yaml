@@ -67,7 +67,7 @@ jobs:
           xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -archivePath build-output/app.xcarchive
 #
       - name: Export ipa
-        run: xcrun xcodebuild -exportArchive -exportOptionsPlist ios/ExportOptions.plist -archivePath build-output/app.xcarchive -exportPath build-output/ios
+        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist build-output/ExportOptions.plist
 #
 #      - name: collect ipa artifacts
 #        uses: actions/upload-artifact@v2
