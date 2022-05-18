@@ -64,7 +64,7 @@ jobs:
 #        run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release
       - name: Build xArchive
         run: |
-          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN CODE_SIGN_IDENTITY='Apple Distribution: Mehul Rajput (7224G6JACN)' -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
+          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
 #
       - name: Export ipa
         run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist Runner/ExportOptions.plist
