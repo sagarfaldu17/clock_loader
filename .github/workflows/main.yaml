@@ -42,7 +42,7 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       - name: Building iOS release
         run: |
-          flutter build ios --release --no-codesign
+          flutter build ios --release
        # zip -r app.ipa Payload
 
 
