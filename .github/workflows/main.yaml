@@ -74,6 +74,23 @@ jobs:
       - name: check folder structure2 | ios
         run: cd ios && ls
 
+#      - name: create ExportOptions.plist
+#        run: |
+#          #!/bin/bash
+#          VERSION=2.12
+#          cat > foo.plist <<EOF
+#          <?xml version="1.0" encoding="UTF-8"?>
+#          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#          <plist version="1.0">
+#          <dict>
+#                  <key>BuildAliasOf</key>
+#                  <string>ProEditor</string>
+#                  <key>BuildVersion</key>
+#                  <value>$VERSION</value>
+#          </dict>
+#          </plist>
+#          EOF
+
 #      - name: check folder structure3 | build-output
 #        run: cd .. && cd build-output && ls
 
