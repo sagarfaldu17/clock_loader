@@ -68,10 +68,10 @@ jobs:
 #
 
       - name: check folder structure1
-        run: cd build-output | ls
+        run: cd build-output && ls
 
       - name: check folder structure2 | ios
-        run: cd ios | ls
+        run: cd ios && ls
 
       - name: check folder structure3 | build-output
         run: cd .. && cd build-output && ls
