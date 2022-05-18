@@ -69,7 +69,6 @@ jobs:
 
       - name: Build resolve Swift dependencies
         run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release
-        echo "::debug::Set the Octocat variable"
       - name: Build xArchive
         run: |
           xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN CODE_SIGN_IDENTITY='iOS Distribution' -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive PROVISIONING_PROFILE= ${{ secrets.MOBILEPROVISION_BASE64 }}
