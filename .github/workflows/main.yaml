@@ -67,8 +67,14 @@ jobs:
           xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
 #
 
-      - name: check folder structure
+      - name: check folder structure1
         run: cd build-output | ls
+
+      - name: check folder structure2 | ios
+        run: cd build-output/ios | ls
+
+      - name: check folder structure3 | build-output
+        run: cd build-output/build-output | ls
 
 #      - name: Export ipa
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
