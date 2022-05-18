@@ -53,18 +53,18 @@ jobs:
      #     # Path to the release files
      #     path: ../Runner.app
 
-      - name: Cache IOS build
-        uses: actions/cache@v3
-        with:
-          path: |
-            ios
-          key: build-release
+#      - name: Cache IOS build
+#        uses: actions/cache@v3
+#        with:
+#          path: |
+#            ios
+#          key: build-release
 
 #      - name: Build resolve Swift dependencies
 #        run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release
-#      - name: Build xArchive
-#        run: |
-#          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN CODE_SIGN_IDENTITY='iOS Distribution' -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive PROVISIONING_PROFILE= ${{ secrets.MOBILEPROVISION_BASE64 }}
+      - name: Build xArchive
+        run: |
+          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -archivePath build-output/app.xcarchive
 #
 #      - name: Export ipa
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
