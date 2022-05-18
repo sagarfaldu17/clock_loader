@@ -71,8 +71,8 @@ jobs:
       - name: check folder structure1
         run: cd build-output && ls
 
-      - name: check folder structure2 | ios
-        run: cd ios && ls
+#      - name: check folder structure2 | ios
+#        run: cd ios && ls
 
 #      - name: create ExportOptions.plist
 #        run: |
@@ -104,10 +104,18 @@ jobs:
 #          # Path to the release files
 #          path: build-output/ios
 
+      - name: 'zip the archive'
+        run: |
+          zip -r app.zip app.xcarchive
+
+      - name: 'delete the archive'
+        run: |
+          rm -R app.xcarchive
+
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
         with:
-          app-path: 'build-output/app.xcarchive'
+          app-path: 'build-output/app.zip'
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
