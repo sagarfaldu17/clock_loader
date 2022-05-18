@@ -71,10 +71,10 @@ jobs:
         run: cd build-output | ls
 
       - name: check folder structure2 | ios
-        run: cd build-output/ios | ls
+        run: cd ios | ls
 
       - name: check folder structure3 | build-output
-        run: cd build-output/build-output | ls
+        run: cd .. && cd build-output && ls
 
 #      - name: Export ipa
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
