@@ -27,20 +27,20 @@ jobs:
         with:
           xcode-version: "13.1"
 
-      - name: Install Apple Certificate
-        uses: apple-actions/import-codesign-certs@v1
-        with:
-          p12-file-base64: ${{ secrets.P12_BASE64 }}
-          p12-password: ${{ secrets.P12_PASSWORD }}
-
-      - name: Install the provisioning profile
-        env:
-          PROVISIONING_CERTIFICATE_BASE64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-        run: |
-          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-          echo -n "$PROVISIONING_CERTIFICATE_BASE64" | base64 --decode --output $PP_PATH
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+#      - name: Install Apple Certificate
+#        uses: apple-actions/import-codesign-certs@v1
+#        with:
+#          p12-file-base64: ${{ secrets.P12_BASE64 }}
+#          p12-password: ${{ secrets.P12_PASSWORD }}
+#
+#      - name: Install the provisioning profile
+#        env:
+#          PROVISIONING_CERTIFICATE_BASE64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+#        run: |
+#          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+#          echo -n "$PROVISIONING_CERTIFICATE_BASE64" | base64 --decode --output $PP_PATH
+#          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+#          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
 #      - name: Building iOS release
 #        run: |
@@ -51,7 +51,7 @@ jobs:
 #          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
 
       - name: go into the build-output folder
-        run: cd build-output && ls
+        run: ls
 
       - name: go into the iOS folder
         run: cd ios && ls
