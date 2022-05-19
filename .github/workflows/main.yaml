@@ -48,7 +48,7 @@ jobs:
      #part1
       - name: Build xArchive
         run: |
-          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
+          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release -archivePath build-output/app.xcarchive
 
 #      - name: check ios folder 1st time
 #        run: cd ios && ls
@@ -70,6 +70,8 @@ jobs:
           <dict>
                   <key>teamID</key>
                   <string>7224G6JACN</string>
+                  <key>signingStyle</key>
+                  <string>automatic</string>
                   <key>compileBitcode</key>
                   <true/>
                   <key>method</key>
@@ -80,7 +82,7 @@ jobs:
 
 
       - name: check >> ExportOptions.plist is present at ios
-        run: ls
+        run: cd ios && ls
 
 
       - name: Export ipa
