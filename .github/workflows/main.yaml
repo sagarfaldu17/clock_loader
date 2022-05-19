@@ -53,8 +53,8 @@ jobs:
 #      - name: check ios folder 1st time
 #        run: cd ios && ls
 
-      - name: check build-output/ios folder
-        run: cd build-output/ios && ls
+      - name: check ios folder
+        run: cd ios && ls
 
 #      - name: check build-output folder
 #        run: cd build-output && ls
@@ -63,7 +63,7 @@ jobs:
         run: |
           #!/bin/bash
           VERSION=2.12
-          cat > build-output/ios/ExportOptions.plist <<EOF
+          cat > ios/ExportOptions.plist <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
@@ -79,12 +79,12 @@ jobs:
           EOF
 
 
-      - name: check >> ExportOptions.plist is present at build-output/ios
-        run: cd build-output/ios && ls
+      - name: check >> ExportOptions.plist is present at ios
+        run: ls
 
 
       - name: Export ipa
-        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist build-output/ios/ExportOptions.plist
+        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
 
       - name: collect ipa artifacts
