@@ -53,14 +53,14 @@ jobs:
       - name: go into the build-output folder
         run: ls
 
-      - name: go into the iOS folder
-        run: cd ios && ls
+#      - name: go into the iOS folder
+#        run: cd ios && ls
 
       - name: create ExportOptions.plist
-        run: |
+        run: cd ios && ls &&
           #!/bin/bash
           VERSION=2.12
-          cat > foo.plist <<EOF
+          cat > ExportOptions.plist <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
