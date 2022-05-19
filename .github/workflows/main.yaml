@@ -27,71 +27,78 @@ jobs:
         with:
           xcode-version: "13.1"
 
-#      - name: Install Apple Certificate
-#        uses: apple-actions/import-codesign-certs@v1
-#        with:
-#          p12-file-base64: ${{ secrets.P12_BASE64 }}
-#          p12-password: ${{ secrets.P12_PASSWORD }}
+      - name: Install Apple Certificate
+        uses: apple-actions/import-codesign-certs@v1
+        with:
+          p12-file-base64: ${{ secrets.P12_BASE64 }}
+          p12-password: ${{ secrets.P12_PASSWORD }}
 #
-#      - name: Install the provisioning profile
-#        env:
-#          PROVISIONING_CERTIFICATE_BASE64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-#        run: |
-#          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-#          echo -n "$PROVISIONING_CERTIFICATE_BASE64" | base64 --decode --output $PP_PATH
-#          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-#          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      - name: Install the provisioning profile
+        env:
+          PROVISIONING_CERTIFICATE_BASE64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+        run: |
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          echo -n "$PROVISIONING_CERTIFICATE_BASE64" | base64 --decode --output $PP_PATH
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-#      - name: Building iOS release
-#        run: |
-#          flutter build ios --release
+      - name: Building iOS release
+        run: |
+          flutter build ios --release
      #part1
-#      - name: Build xArchive
-#        run: |
-#          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
+      - name: Build xArchive
+        run: |
+          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
 
-      - name: go into the build-output folder
-        run: ls
+      - name: check ios folder 1st time
+        run: cd ios && ls
 
-#      - name: go into the iOS folder
-#        run: cd ios && ls
+      - name: check build-output/ios folder
+        run: cd build-output/ios && ls
+
+      - name: check build-output folder
+        run: cd build-output && ls
 
       - name: create ExportOptions.plist
-        run: cd ios && ls &&
+        run: |
           #!/bin/bash
           VERSION=2.12
-          cat > ExportOptions.plist <<EOF
+          cat > build-output/ios/ExportOptions.plist <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
           <dict>
-                  <key>BuildAliasOf</key>
-                  <string>ProEditor</string>
-                  <key>BuildVersion</key>
-                  <value>$VERSION</value>
+                  <key>teamID</key>
+                  <string>7224G6JACN</string>
+                  <key>compileBitcode</key>
+                  <true/>
+                  <key>method</key>
+                  <string>app-store</string>
           </dict>
           </plist>
           EOF
 
-#      - name: Export ipa
-#        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
-      - name: check folder structure2 | ios
-        run: ls
+      - name: check >> ExportOptions.plist is present at build-output/ios
+        run: cd build-output/ios && ls
 
-#      - name: collect ipa artifacts
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: release-ipa
-#          # Path to the release files
-#          path: build-output/ios
 
+      - name: Export ipa
+        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist build-output/ios/ExportOptions.plist
+
+
+      - name: collect ipa artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-ipa
+          # Path to the release files
+          path: build-output/ios
 
 
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
         with:
-          app-path: 'build-output/app.zip'
+          app-path: 'build-output/ios'
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
