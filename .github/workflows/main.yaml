@@ -46,6 +46,10 @@ jobs:
         run: |
           flutter build ios --release
      #part1
+      - name: Clean xcodebuild
+        run: |
+          xcodebuild clean -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release
+
       - name: Build xArchive
         run: |
           xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release -archivePath build-output/app.xcarchive
