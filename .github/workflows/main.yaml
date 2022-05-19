@@ -68,14 +68,19 @@ jobs:
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
           <dict>
-                  <key>teamID</key>
-                  <string>7224G6JACN</string>
-                  <key>signingStyle</key>
-                  <string>automatic</string>
-                  <key>compileBitcode</key>
-                  <true/>
-                  <key>method</key>
-                  <string>app-store</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.mi.flutter</key>
+              <string>88a729c2-4c3a-47d2-87f4-74ece1d50ace</string>
+            </dict>
+            <key>teamID</key>
+            <string>7224G6JACN</string>
+            <key>signingStyle</key>
+            <string>automatic</string>
+            <key>compileBitcode</key>
+            <true/>
+            <key>method</key>
+            <string>app-store</string>
           </dict>
           </plist>
           EOF
