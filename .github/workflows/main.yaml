@@ -50,14 +50,14 @@ jobs:
         run: |
           xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
 
-      - name: check ios folder 1st time
-        run: cd ios && ls
+#      - name: check ios folder 1st time
+#        run: cd ios && ls
 
       - name: check build-output/ios folder
         run: cd build-output/ios && ls
 
-      - name: check build-output folder
-        run: cd build-output && ls
+#      - name: check build-output folder
+#        run: cd build-output && ls
 
       - name: create ExportOptions.plist
         run: |
