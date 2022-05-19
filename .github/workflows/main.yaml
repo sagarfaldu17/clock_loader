@@ -41,62 +41,44 @@ jobs:
           echo -n "$PROVISIONING_CERTIFICATE_BASE64" | base64 --decode --output $PP_PATH
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-      - name: Building iOS release
-        run: |
-          flutter build ios --release
-       # zip -r app.ipa Payload
 
+#      - name: Building iOS release
+#        run: |
+#          flutter build ios --release
+     #part1
+#      - name: Build xArchive
+#        run: |
+#          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
 
-     # - name: collect ipa artifacts
-     #   uses: actions/upload-artifact@v2
-     #   with:
-     #     name: release
-     #     # Path to the release files
-     #     path: ../Runner.app
-
-#      - name: Cache IOS build
-#        uses: actions/cache@v3
-#        with:
-#          path: |
-#            ios
-#          key: build-release
-
-#      - name: Build resolve Swift dependencies
-#        run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release
-      - name: Build xArchive
-        run: |
-          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release DEVELOPMENT_TEAM=7224G6JACN -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive
-#
-
-      - name: check folder structure1
+      - name: go into the build-output folder
         run: cd build-output && ls
 
-#      - name: check folder structure2 | ios
-#        run: cd ios && ls
+      - name: go into the iOS folder
+        run: cd ios && ls
 
-#      - name: create ExportOptions.plist
-#        run: |
-#          #!/bin/bash
-#          VERSION=2.12
-#          cat > foo.plist <<EOF
-#          <?xml version="1.0" encoding="UTF-8"?>
-#          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#          <plist version="1.0">
-#          <dict>
-#                  <key>BuildAliasOf</key>
-#                  <string>ProEditor</string>
-#                  <key>BuildVersion</key>
-#                  <value>$VERSION</value>
-#          </dict>
-#          </plist>
-#          EOF
-
-#      - name: check folder structure3 | build-output
-#        run: cd .. && cd build-output && ls
+      - name: create ExportOptions.plist
+        run: |
+          #!/bin/bash
+          VERSION=2.12
+          cat > foo.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+                  <key>BuildAliasOf</key>
+                  <string>ProEditor</string>
+                  <key>BuildVersion</key>
+                  <value>$VERSION</value>
+          </dict>
+          </plist>
+          EOF
 
 #      - name: Export ipa
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
-#
+
+      - name: check folder structure2 | ios
+        run: ls
+
 #      - name: collect ipa artifacts
 #        uses: actions/upload-artifact@v2
 #        with:
@@ -104,13 +86,7 @@ jobs:
 #          # Path to the release files
 #          path: build-output/ios
 
-      - name: 'zip the archive'
-        run: |
-          zip -r app.zip app.xcarchive
 
-      - name: 'delete the archive'
-        run: |
-          rm -R app.xcarchive
 
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
